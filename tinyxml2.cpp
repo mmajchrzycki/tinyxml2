@@ -428,18 +428,38 @@ void XMLUtil::ToStr( double v, char* buffer, int bufferSize )
 
 bool XMLUtil::ToInt( const char* str, int* value )
 {
-    if ( TIXML_SSCANF( str, "%d", value ) == 1 ) {
-        return true;
+    if(str[0] == '#')
+    {
+        if ( TIXML_SSCANF( str+1, "%x", value ) == 1 ) {
+            return true;
+        }
+        return false;
     }
-    return false;
+    else
+    {
+        if ( TIXML_SSCANF( str, "%d", value ) == 1 ) {
+            return true;
+        }
+        return false;
+    }
 }
 
 bool XMLUtil::ToUnsigned( const char* str, unsigned *value )
 {
-    if ( TIXML_SSCANF( str, "%u", value ) == 1 ) {
-        return true;
+    if(str[0] == '#')
+    {
+        if ( TIXML_SSCANF( str+1, "%x", value ) == 1 ) {
+            return true;
+        }
+        return false;
     }
-    return false;
+    else
+    {
+        if ( TIXML_SSCANF( str, "%u", value ) == 1 ) {
+            return true;
+        }
+        return false;
+    }
 }
 
 bool XMLUtil::ToBool( const char* str, bool* value )
